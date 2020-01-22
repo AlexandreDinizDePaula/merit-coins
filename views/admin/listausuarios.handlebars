@@ -1,0 +1,27 @@
+{{>_msg}}
+{{#each usuarios}}
+<div class="card mb-2">
+    <div class="card-body">
+        <h5>{{this.nome}} </h5>
+        <h6>Email: {{this.email}}</h6>
+        <h6>Cargo: {{this.cargo}}</h6>
+        <h6>Carteira: {{this.carteira}}</h6>
+        <h6>Moedas Para doar: {{this.moedasParaDoar}}</h6>
+        <div class="conteiner">
+            <div class="row">        
+                <div class="col-sm-1">
+                    <a href="/admin/listausuarios/editar/{{this._id}}"><button class="btn btn-success">Editar</button></a>
+                </div>
+                <div class="col-sm-11">    
+                    <form action="/admin/listausuarios/excluir" method="post">
+                        <input type="hidden" name="id" value="{{_id}}">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                </div >
+        </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+<h5 class="mt-3">Nenhum usuário cadastrado</h5>
+{{/each}}

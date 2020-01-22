@@ -1,0 +1,102 @@
+{{#each erros}}
+<div class="alert alert-danger">{{texto}}</div>
+{{/each}}
+{{>_msg}}
+<div class="card border-primary mb-3">
+    <h6 class="card-header">Cadastrar novo usuário</h6>
+    <div class="body p-3">
+        <small>
+            <form action="/admin/novousuario" method="POST">
+                <label for="nome"> Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome Completo">
+
+                <label for="cargo">Cargo</label>
+                <input type="text" class="form-control" id="cargo" name="cargo"
+                    placeholder="Digite o cargo do colaborador">
+
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email">
+
+                <br>
+                <button id="adicionar" type="submit" class="btn btn-primary" data-dismiss="modal">Adicionar</button>
+            </form>
+        </small>
+    </div>
+</div>
+<div class="card border-primary mb-3">
+    <h6 class="card-header">Excluir usuário</h6>
+    <div class="body p-3">
+        <small>
+            <form action="/admin/excluirusuario" method="POST">
+                <label for="iExcluir">Email</label>
+                <select class="custom-select" id="iExcluir">
+                    <option selected>Escolha...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <br>
+                <br>
+                <button type="submit" class="btn btn-primary">Excluir</button>
+            </form>
+        </small>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card border-primary mb-3">
+            <h6 class="card-header">Adicionar Prêmio</h6>
+            <div class="body p-3">
+                <small>
+                    <form action="/admin/addpremio" method="POST">
+                        <label for="iNome">Nome</label>
+                        <input type="text" class="form-control" id="iPremio" name="nPremio"
+                            placeholder="Nome do prêmio">
+
+                        <label for="iEmail">Valor</label>
+                        <input type="number" class="form-control">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Excluir</button>
+                    </form>
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card border-primary mb-3">
+            <h6 class="card-header">Excluir prêmio</h6>
+            <div class="body p-3">
+                <small>
+                    <form action="/admin/excluirpremio" method="POST">
+                        <label for="iReset">Prêmio</label>
+                        <select class="custom-select" id="iReset">
+                            <option selected>Escolha...</option>
+                            <option value="1">Smartphone</option>
+                            <option value="2">Caneca</option>
+                            <option value="3">Cooler</option>
+                        </select>
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Resetar</button>
+                    </form>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card border-primary mb-3">
+    <h6 class="card-header">Novo valor para moedas</h6>
+    <div class="body p-3">
+        <small>
+            <form action="admin/resetarmoedas" method="POST">
+                <label for="iNome">Valor</label>
+                <input type="number" class="form-control" id="iNovoValor" name="nNovoValor"
+                    placeholder="Digite o valor">
+                <br>
+                <button id="resetaValor" type="submit" class="btn btn-primary" data-dismiss="modal">Resetar</button>
+            </form>
+        </small>
+    </div>
+</div>

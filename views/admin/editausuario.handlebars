@@ -1,0 +1,31 @@
+<div class="card border-primary mb-3">
+    <h6 class="card-header">Editar usuário</h6>
+    <div class="body p-3">
+        <small>
+            <form action="/admin/listausuarios/editar" method="POST">
+                <input type="hidden" name="id" id="id" value="{{usuario._id}}">
+                <label for="nome"> Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" value="{{usuario.nome}}">
+
+                <label for="cargo">Cargo</label>
+                <input type="text" class="form-control" id="cargo" name="cargo"
+                    value="{{usuario.cargo}}">
+
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{usuario.email}}">
+
+                <label for="moedas">Moedas para doar</label>
+                <input type="number" class="form-control" id="moedas" name="moedas" 
+                value="{{usuario.moedasParaDoar}}">
+                <br>
+                <button id="editar" type="submit" class="btn btn-primary" >Editar</button>
+            </form>
+        </small>
+    </div>
+</div>
+
+<div>
+    <form action="admin/resetarsenha" method="POST">
+        <button type="submit" class="btn btn-primary">Resetar Senha</button>
+    </form>
+</div>
