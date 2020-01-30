@@ -1,10 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //Modelo
-
-const premeio = new Schema({
-    nome:{
+const premio = new Schema({
+    premio:{
         type:String,
         required: true
     },
@@ -15,7 +14,10 @@ const premeio = new Schema({
     quantidade:{
         type: Number,
         required:true
+    },
+    novoValor:{
+        type: Number
     }
 })
 
-mongoose.model = ('premios', premio)
+mongoose.model('premios', premio);
