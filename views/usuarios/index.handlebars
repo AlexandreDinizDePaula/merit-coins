@@ -1,0 +1,56 @@
+<div class="card mb-3">
+  <div class="card-header">
+      Informações de usuário
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Alexandre Diniz</h5>
+    <p class="card-text">Cargo: Estudante </p>
+    <p class="card-text">Email: asds@adas.com </p>
+    <p class="card-text">Carteira: 50</p>
+    <p class="card-text">Moedas para doar: 100</p>
+  </div>
+</div>
+
+<div class="card border-primary mb-3">
+    <h6 class="card-header">Fazer um doação</h6>
+    <div class="body p-3">
+        <form action="/doar" method="POST">
+            <label for="idRecebedor">Email</label>
+            <select name="idRecebedor" class="custom-select">
+                {{#each usuarios}}
+                    <option value="{{_id}}">{{this.email}}</option>
+                {{else}}
+                    <option value="0">Nenhum usuário cadastrado</option>
+                {{/each}}
+            </select>
+            <label for="valor">Valor</label>
+            <input type="text" class="form-control" id="valor" name="valor" placeholder="Digite a quantidade">
+            <label for="motivo">Motivo</label>
+            <input type="text" class='form-control' id="motivo" name="motivo" placeholder="Digite o motivo de sua doação">
+            <br>
+            <button class="btn btn-primary" type="submit">Doar</button>
+        </form>  
+    </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-header">
+      Últimas doações enviadas
+  </div>
+  <div class="card-body">
+    <p class="card-text">Cargo: Estudante </p>
+    <p class="card-text">Carteira: 50</p>
+    <p class="card-text">Moedas para doar: 100</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+      Últimas doações recebidas
+  </div>
+  <div class="card-body">
+    <p class="card-text">Cargo: Estudante </p>
+    <p class="card-text">Carteira: 50</p>
+    <p class="card-text">Moedas para doar: 100</p>
+  </div>
+</div>

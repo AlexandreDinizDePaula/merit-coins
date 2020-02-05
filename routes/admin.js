@@ -57,6 +57,23 @@ router.post('/listausuarios/editar', (req,res) =>{
     })
 })
 
+//post reseta senha
+router.post('/listausuarios/resetarsenha', (req,res) =>{
+    usuario.findOne({_id:req.body.id}).then(usuario =>{
+        usuario.senha = 'resetada';
+        usuario.save().then(()=> {
+            req.flash('successMsg', 'Senha resetada com sucesso')
+            res.redirect('/admin/listausuarios')
+        }).catch((err) => {
+            req.flash('errorMsg', 'Houve um erro ao resetar a senha')
+            res.redirect('/admin/listausuarios')
+        })
+    }).catch((err) =>{
+        req.flash('errorMsg','Erro ao resetar')
+        res.redirect('/admin/listausuarios')
+    })
+})
+
 //post para excluir usuário
 router.post('/listausuarios/excluir', (req,res) => {
     usuario.remove({_id:req.body.id}).then(() =>{

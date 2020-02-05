@@ -25,7 +25,8 @@
 </div>
 
 <div>
-    <form action="admin/resetarsenha" method="POST">
+    <form action="/admin/listausuarios/resetarsenha" method="POST">
+        <input type="hidden" name="id" id="id" value="{{usuario._id}}">
         <button type="submit" class="btn btn-primary">Resetar Senha</button>
     </form>
 </div>

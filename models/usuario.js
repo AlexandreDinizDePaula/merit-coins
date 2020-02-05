@@ -26,6 +26,10 @@ const usuario = new Schema({
     moedasParaDoar:{
         type: Number,
         default:0
+    },
+    eadmin:{
+        type: Number,
+        default:0
     }
 })
 

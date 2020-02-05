@@ -5,9 +5,13 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const app = express();
 const adminRouter = require('./routes/admin');
+const indexRouter = require('./routes/index');
+
 const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport')
+require('./config/auth')
 //Configurações
     //Session
         app.use(session({
@@ -15,6 +19,9 @@ const flash = require('connect-flash');
             resave: true,
             saveUninitialized: true
         }));
+        app.use(passport.initialize());
+        app.use(passport.session());
+    //Flash    
         app.use(flash())
     //Middleware
         app.use((req,res,next) =>{
@@ -42,7 +49,9 @@ const flash = require('connect-flash');
           console.log("Erro ao se conectar no MongoDB: " + err)
       })
 //Rotas
+     
     app.use('/admin', adminRouter)
+    app.use('/', indexRouter)
 //Outros
 const PORT = 3000;
 app.listen(PORT, () => {
