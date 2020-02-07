@@ -1,16 +1,22 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-2">
-  <a class="navbar-brand" href="#">Merit Coins</a>
+  <a class="navbar-brand" >Merit Coins</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Lista de doações</a>
-      <a class="nav-item nav-link" href="#">Prêmios</a>
-      <a class="nav-item nav-link" href="">Regulamento</a>
-      <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Login</a>
+      <a class="nav-item nav-link active" href="/admin">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/admin/listausuarios">Usuários</a>
+      {{#if user}}
+      <a class="nav-item nav-link" href="/login">Logout</a>
+      {{/if}}
+      {{#if req.user.eAdmin}}
+        <a class="nav-item nav-link" href="#">Prêmios</a>
+        <a class="nav-item nav-link" href="">Regulamento</a>
+      {{else}}
+      
+      {{/if}}
     </div>
   </div>
 </nav>

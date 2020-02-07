@@ -1,12 +1,12 @@
 {{>_msg}}
+{{#each users}}
+    {{this.nome}}
+{{/each}}
 {{#each usuarios}}
 <div class="card mb-2">
     <div class="card-body">
         <h5>{{this.nome}} </h5>
         <h6>Email: {{this.email}}</h6>
-        <h6>Cargo: {{this.cargo}}</h6>
-        <h6>Carteira: {{this.carteira}}</h6>
-        <h6>Moedas Para doar: {{this.moedasParaDoar}}</h6>
         <div class="conteiner">
             <div class="row">        
                 <div class="col-sm-1">

@@ -27,7 +27,7 @@ const usuario = new Schema({
         type: Number,
         default:0
     },
-    eadmin:{
+    eAdmin:{
         type: Number,
         default:0
     }

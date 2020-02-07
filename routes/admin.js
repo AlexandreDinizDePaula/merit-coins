@@ -6,8 +6,9 @@ const usuario = mongoose.model('usuarios')
 const flash = require('connect-flash')
 require('../models/premio')
 const premio = mongoose.model('premios')
+const {eAdmin} = require('../helpers/eAdmin')
 
-router.get('/', (req,res) => {
+router.get('/', eAdmin, (req,res) => {
     premio.find().then((premios) => {
         res.render('admin/index', {premios})
     }).catch((err) =>{
@@ -17,7 +18,8 @@ router.get('/', (req,res) => {
 })
 
 //lista usuários
-router.get('/listausuarios', (req,res) => {
+router.get('/listausuarios', eAdmin, (req,res) => {
+    
     usuario.find().then((usuarios) => {
         res.render('admin/listausuarios', {usuarios})
     }).catch((err) => {
@@ -26,7 +28,7 @@ router.get('/listausuarios', (req,res) => {
 })
 
 //edita um usuário por id
-router.get('/listausuarios/editar/:id', (req,res) =>{
+router.get('/listausuarios/editar/:id', eAdmin, (req,res) =>{
     usuario.findOne({_id:req.params.id}).then(usuario =>{
         console.log(usuario)
         res.render('admin/editausuario', {usuario:usuario})
@@ -37,7 +39,7 @@ router.get('/listausuarios/editar/:id', (req,res) =>{
 })
 
 //post de edição usuário
-router.post('/listausuarios/editar', (req,res) =>{
+router.post('/listausuarios/editar', eAdmin, (req,res) =>{
     usuario.findOne({_id:req.body.id}).then(usuario =>{
         usuario.nome = req.body.nome;
         usuario.cargo = req.body.cargo;
@@ -58,7 +60,7 @@ router.post('/listausuarios/editar', (req,res) =>{
 })
 
 //post reseta senha
-router.post('/listausuarios/resetarsenha', (req,res) =>{
+router.post('/listausuarios/resetarsenha', eAdmin, (req,res) =>{
     usuario.findOne({_id:req.body.id}).then(usuario =>{
         usuario.senha = 'resetada';
         usuario.save().then(()=> {
@@ -75,7 +77,7 @@ router.post('/listausuarios/resetarsenha', (req,res) =>{
 })
 
 //post para excluir usuário
-router.post('/listausuarios/excluir', (req,res) => {
+router.post('/listausuarios/excluir', eAdmin, (req,res) => {
     usuario.remove({_id:req.body.id}).then(() =>{
         req.flash('successMsg', 'Usuário excluído com sucesso')
         res.redirect('/admin/listausuarios')
@@ -86,7 +88,7 @@ router.post('/listausuarios/excluir', (req,res) => {
 })
 
 //cria um novo usário
-router.post('/novousuario', (req,res) => {
+router.post('/novousuario', eAdmin, (req,res) => {
     var erros = [];
     if(!req.body.nome || typeof req.body.nome == undefined || req.body.nome == null || req.body.nome.lenght < 3){
             erros.push({texto: "Nome inválido"})
@@ -102,12 +104,12 @@ router.post('/novousuario', (req,res) => {
     if( erros.length > 0){
         res.render('admin/index', {erros: erros})
     }        
-    else{
-        
+    else{        
         const novoUsuario = {
             nome: req.body.nome,
             cargo: req.body.cargo,
             email: req.body.email,
+            eAdmin: req.body.eadmin
         }
         new usuario(novoUsuario).save().then(()=>{
             req.flash('successMsg', 'Novo usuário cadastrado com sucesso')
@@ -120,7 +122,7 @@ router.post('/novousuario', (req,res) => {
 }) 
 
 //cria um novo prêmio
-router.post('/novopremio', (req,res) =>{
+router.post('/novopremio', eAdmin, (req,res) =>{
     var erros = [];
     if(!req.body.premio || typeof req.body.premio == undefined || req.body.premio == null || req.body.premio.lenght < 2){
         erros.push({texto: "Nome inválido"})
@@ -151,8 +153,9 @@ router.post('/novopremio', (req,res) =>{
         }) 
     }  
 })
+
 //post para excluir usuário
-router.post('/excluirpremio', (req,res) => {
+router.post('/excluirpremio', eAdmin, (req,res) => {
     if (req.body.id == 0){
         req.flash('errorMsg', 'Não há prêmio para ser excluido')
         res.redirect('/admin')
@@ -170,7 +173,7 @@ router.post('/excluirpremio', (req,res) => {
 })
 
 //post para novo valor de moedas
-router.post('/novomoedas', (req,res) =>{
+router.post('/novomoedas', eAdmin, (req,res) =>{
         
         usuario.updateMany({moedasParaDoar:{$nin: req.body.valor}}, {moedasParaDoar: req.body.valor}).then(() =>{
             req.flash('successMsg', 'Novo valor adicionado com sucesso')
@@ -179,9 +182,6 @@ router.post('/novomoedas', (req,res) =>{
             req.flash('errorMsg', 'Erro')
             res.redirect('/admin')
     })
-    
-      
 })
-
 
 module.exports = router;

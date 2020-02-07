@@ -3,11 +3,11 @@
       Informações de usuário
   </div>
   <div class="card-body">
-    <h5 class="card-title">Alexandre Diniz</h5>
-    <p class="card-text">Cargo: Estudante </p>
-    <p class="card-text">Email: asds@adas.com </p>
-    <p class="card-text">Carteira: 50</p>
-    <p class="card-text">Moedas para doar: 100</p>
+    <h5 class="card-title">{{users.nome}}</h5>
+    <p class="card-text">Cargo: {{users.cargo}} </p>
+    <p class="card-text">Email: {{users.email}} </p>
+    <p class="card-text">Carteira: {{users.carteira}}</p>
+    <p class="card-text">Moedas para doar: {{users.moedasParaDoar}}</p>
   </div>
 </div>
 
@@ -15,16 +15,16 @@
     <h6 class="card-header">Fazer um doação</h6>
     <div class="body p-3">
         <form action="/doar" method="POST">
-            <label for="idRecebedor">Email</label>
-            <select name="idRecebedor" class="custom-select">
+            <label for="recebedor">Email</label>
+            <select name="recebedor" class="custom-select">
                 {{#each usuarios}}
-                    <option value="{{_id}}">{{this.email}}</option>
+                    <option value="{{email}}">{{this.email}}</option>
                 {{else}}
                     <option value="0">Nenhum usuário cadastrado</option>
                 {{/each}}
             </select>
-            <label for="valor">Valor</label>
-            <input type="text" class="form-control" id="valor" name="valor" placeholder="Digite a quantidade">
+            <label for="quantidade">Quantidade</label>
+            <input type="text" class="form-control" id="quantidade" name="quantidade" placeholder="Digite a quantidade">
             <label for="motivo">Motivo</label>
             <input type="text" class='form-control' id="motivo" name="motivo" placeholder="Digite o motivo de sua doação">
             <br>

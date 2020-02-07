@@ -11,13 +11,12 @@ const doacao = new Schema({
         type: String,
         required: true
     },
-    valor:{
+    quantidade:{
         type: Number,
         required:true
     },
     data:{
-        type: Date,
-        
+        type: Date
     },
     motivo:{
         type: String,
